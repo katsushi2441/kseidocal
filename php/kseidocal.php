@@ -163,12 +163,16 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:18px 0;font-size
 </style></head><body>';
     echo '<header class="top"><div class="wrap"><a class="brand" href="' . u('/') . '"><img src="https://exbridge.jp/images/logo-mark-128.png" width="34" height="34" alt="株式会社エクスブリッジ"><span>' . h(NAME) . '<small>会社に関係する制度の変更を、施行日の順に</small></span></a>';
     echo '<nav class="menu"><a href="' . u('/') . '">カレンダー</a><a href="' . u('/cal.ics') . '">カレンダーに入れる</a><a href="' . u('/about') . '">出典</a></nav>';
+    if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') {   // 当社の公開先だけ。配布版を置いたサイトには出さない
     echo '<!--kurage-only--><span class="promo"><a href="https://exbridge.jp/ai-it-komon.html?ref=kseidocal-head-komon" target="_blank" rel="noopener">AI-IT顧問</a><a href="https://kurage.exbridge.jp/vibe-customize.html?ref=kseidocal-head-vibe" target="_blank" rel="noopener">バイブカスタマイズ</a><a href="https://kurage.exbridge.jp/reseller.html?ref=kseidocal-head-reseller" target="_blank" rel="noopener">販売代理店募集</a></span><!--/kurage-only-->';
+    }
     echo '</div></header><main class="wrap">' . $body . '</main>';
     echo '<footer><div class="wrap"><p>日付は各省庁の公式ページで確認したものです（' . jd(CHECKED) . '）。国会の発言は、国立国会図書館「国会会議録検索システム」の API から取っています（1日ごとに更新）。</p>';
     echo '<p>このページは制度の案内で、税務・労務・法律の助言ではありません。個別の判断は、税理士・社会保険労務士・弁護士や、各省庁の窓口にご相談ください。</p>';
     echo '<p><a href="https://exbridge.jp/?ref=kseidocal">株式会社エクスブリッジ</a>（名古屋・業務システム開発）・<a href="' . SITE . '/kchingin.php/?ref=kseidocal">最低賃金・賃上げ助成金チェック</a>・<a href="' . SITE . '/ktoriteki.php/?ref=kseidocal">取適法チェック</a>・<a href="https://xb4g.com/giin/tracker?ref=kseidocal">国会トラッカー</a></p></div></footer>';
+    if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') {   // 計測も当社の公開先だけ
     echo '<img src="' . SITE . '/simpletrack.php?t=img&url=' . rawurlencode($url) . '&ref=' . rawurlencode((string)($_GET['ref'] ?? '')) . '" width="1" height="1" alt="" aria-hidden="true" style="position:absolute;left:-9999px">';
+    }
     if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') echo '<script src="https://kurage.exbridge.jp/partner-bar.js" defer></script>';
     echo '</body></html>';
 }
